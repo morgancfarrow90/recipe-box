@@ -1,0 +1,30 @@
+<h2>Add a New Recipe</h2>
+
+<% if flash.has?(:required_fields) %>
+  <%= flash[:required_fields] %>
+<% end %>
+
+<form method="POST" action="/recipes">
+
+<label for "name">Recipe Name: </label>
+<input type= "text" name="recipe[name]">
+<br>
+
+
+<label> Meal Type: </label>
+<% Genre.all.each do |type| %>
+<input type="radio" name="recipe[genre_id]"
+value="<%=type.id%>"><%=type.genre_name%></input>
+<% end %><br>
+
+<label for "main_ingrediant">Main Ingredient: </label>
+<input type= "text" name="recipe[main_ingrediant]">
+<br>
+<label for "instructions">Instructions: </label>
+<textarea name="recipe[instructions]"></textarea>
+<br>
+<label for "notes">Notes: </label>
+<textarea name="recipe[notes]"></textarea>
+<br>
+<input type= "submit" value="Submit">
+</form>

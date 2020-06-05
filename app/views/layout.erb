@@ -1,0 +1,31 @@
+<html>
+    <head>
+    <link rel="stylesheet" href="/stylesheets/main.css" />
+    </head>
+
+      <body>
+
+        <h1>Recipe Box</h1>
+
+        <nav>
+          <% if logged_in? %>
+
+            <a href="/">All Recipes </a>
+            <a href="/recipes">Your Recipes </a>
+            <a href="/recipes/new"> Create Recipe </a>
+            <a href="/logout"> Log Out </a>
+            <p>Welcome, <%=current_user.user_email %></p>
+
+          <% else %>
+            <a href="/signup"> Sign Up</a>
+            <a href="/login"> Sign In </a>
+          <% end %>
+
+        </nav>
+
+      
+
+          <%= yield %>
+
+        </body>
+  </html>

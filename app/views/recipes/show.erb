@@ -1,0 +1,20 @@
+<h2><%=@recipe.name%></h2>
+      <h3>Meal Type:
+
+    <%= @recipe.genre.genre_name %> | Main Ingredient: <%=@recipe.main_ingrediant%>
+      </h3>
+
+
+
+      <p>Instructions:<%=@recipe.instructions%></p>
+      <p>Notes:<%=@recipe.notes%></p>
+
+
+      <a href= "/recipes/<%=@recipe.id%>/edit">Edit Recipe</a>
+      <br>
+      <br>
+
+        <form method="POST" action="/recipes/<%= @recipe.id %>">
+          <input id="hidden" type="hidden" name="_method" value="delete">
+          <input type="submit" value="delete">
+        </form>

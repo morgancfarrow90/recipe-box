@@ -5,7 +5,9 @@ class SessionsController < ApplicationController
   end
 
   post '/sessions' do
-    if params[:user_email] == "" || params[:password] == ""
+    user = User.find_by(user_email: params[:user_email])
+    if user == nil
+    #if params[:user_email] == "" || params[:password] == ""
       erb :'sessions/error'
     else
     login(params[:user_email], params[:password])

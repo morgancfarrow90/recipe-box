@@ -1,19 +1,16 @@
-
-
-  <h2>Your Recipes</h2>
-
-
+<h2>Your Recipes</h2>
 
   <h3>Click a Recipe Below to View and/or Update</h3>
 
-  <ul>
+<ul>
   <% @genres.each do |genre| %>
-  <li> <%=genre.genre_name %> </li>
-  <ul> <% genre.recipes.each do |recipe| %>
+
+
+  <li>  <%=genre.genre_name %></li>
+
+   <% genre.recipes.each do |recipe| %>
     <% if recipe.user == current_user %>
-    <li><a href= "/recipes/<%=recipe.id%>"> <%= recipe.name %> </a></li> <br>
+  <ul><li>  <a href= "/recipes/<%=recipe.id%>"> <%= recipe.name %> </a> </li></ul><br>
               <% end %>
               <% end %>
               <% end %>
-              </ul>
-              </ul>

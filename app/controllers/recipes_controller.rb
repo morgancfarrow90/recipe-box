@@ -18,7 +18,7 @@ class RecipesController < ApplicationController
 
   #create
    post '/recipes' do
-    if !params["recipe"]["name"].empty? && !params["recipe"]["genre_id"].empty? && !params["recipe"]["genre_id"].empty? && !params["recipe"]["main_ingrediant"].empty? && !params["recipe"]["instructions"].empty?
+    if !params["recipe"]["name"].empty? && !params["recipe"]["genre_id"] == nil && !params["recipe"]["main_ingrediant"].empty? && !params["recipe"]["ingredients"].empty? && !params["recipe"]["instructions"].empty?
 
     recipe = Recipe.create(params[:recipe])
     recipe.user= current_user
@@ -27,8 +27,7 @@ class RecipesController < ApplicationController
     redirect to "/recipes/#{recipe.id}"
 
     else
-      flash[:required_fields]= "All fields must be completed. Only notes are optional."
-      erb :'recipes/new'
+      erb :'recipes/create_error'
     end
    end
 
@@ -38,7 +37,7 @@ class RecipesController < ApplicationController
    @recipe = Recipe.find_by(id: id)
    current_user
    if !logged_in? || @recipe.user_id != @current_user.id
-     erb :'recipes/error'
+     erb :'recipes/accesserror'
    else
      erb :'recipes/edit'
    end
@@ -57,17 +56,31 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find_by(id: id)
     current_user
     if !logged_in? || @recipe.user_id != @current_user.id
-      erb :'recipes/error'
+      erb :'recipes/accesserror'
     else
       @recipe.delete
       redirect to "/recipes"
   end
 end
 
-  #show
-  get '/recipes/:id' do
-    id = params[:id]
-      @recipe = Recipe.find_by(id: id)
-    erb :'recipes/show'
-  end
+#show
+get '/recipes/:id' do
+  id = params[:id]
+    @recipe = Recipe.find_by(id: id)
+  erb :'recipes/show'
+end
+
+##CUSTOM##
+#search by main ingredient
+get '/search' do
+  erb :'recipes/search'
+end
+
+#search results
+get '/searchresult' do
+  @main = params[:main]
+  @recipes= Recipe.all
+  erb :'recipes/searchresult'
+end
+
 end

@@ -2,28 +2,30 @@
     <head>
     <link rel="stylesheet" href="/stylesheets/main.css" />
     </head>
-
       <body>
-
+        <div id= "title">
         <h1>Recipe Box</h1>
-
-        <nav>
+        </div>
+          <nav>
           <% if logged_in? %>
 
-            <a href="/">All Recipes </a>
-            <a href="/recipes">Your Recipes </a>
-            <a href="/recipes/new"> Create Recipe </a>
-            <a href="/logout"> Log Out </a>
-            <p>Welcome, <%=current_user.user_email %></p>
+
+
+          <ul>
+            <li><a>Welcome, <%=current_user.user_email %></a></li>
+            <li><a href="/">All Recipes </a></li>
+            <li><a href="/recipes">Your Recipes </a></li>
+            <li><a href="/recipes/new"> Create Recipe </a></li>
+            <li><a href="/search">Search Recipes </a></li>
+            <li><a href="/logout"> Log Out </a></li>
+
 
           <% else %>
-            <a href="/signup"> Sign Up</a>
-            <a href="/login"> Sign In </a>
+            <li><a href="/signup"> Sign Up</a></li>
+            <li><a href="/login"> Sign In </a></li>
           <% end %>
-
-        </nav>
-
-      
+             </ul>
+          </nav>
 
           <%= yield %>
 

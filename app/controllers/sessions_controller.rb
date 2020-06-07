@@ -5,7 +5,9 @@ class SessionsController < ApplicationController
   end
 
   post '/signup' do
-    if params[:user][:user_email] == "" || params[:user][:password] == ""
+    if User.find_by(user_email: params[:user][:user_email]) != nil
+    erb :'sessions/email_taken'
+    elsif params[:user][:user_email] == "" || params[:user][:password] == ""
     erb :'sessions/signuperror'
     else
     user = User.new(params[:user])

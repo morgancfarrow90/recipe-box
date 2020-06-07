@@ -18,24 +18,20 @@ nav {
   border-collapse: collapse;
   border: none;
   background-color: indigo;
-
-
 }
+
 nav ul {
   display: table-row;
   margin: 12px;
 }
+
 nav li {
   display: table-cell;
   margin: 0;
   align: center;
 }
+
 nav a {
-  font-family: Geneva;
-  color: white;
-  font-size: 18px;
-}
-nav p{
   font-family: Geneva;
   color: white;
   font-size: 18px;
@@ -44,6 +40,7 @@ nav p{
 h2, h3, p {
   font-family: Geneva;
 }
+
 input {
   font-family: Geneva;
 }
@@ -53,15 +50,12 @@ label {
     font: 1rem 'Fira Sans', sans-serif;
 }
 
-input,
-label {
+input, label {
     margin: .4rem 0;
 }
+
 ul {
   list-style: square;
   display: inline-block;
   margin-right: 0.2rem;
-}
-div > p{
-  color: white;
 }

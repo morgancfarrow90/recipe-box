@@ -1,4 +1,4 @@
-<h2> Recipes with <%=@main%> </h2>
+<h2>Below are recipes that include <%=@main%>:</h2>
 
 <% @recipes.each do |recipe| %>
 <% if recipe.ingredients.include?(@main)%>

@@ -43,14 +43,14 @@ class RecipesController < ApplicationController
    end
  end
 
-  #Update
+  #update
   put '/recipes/:id' do
     recipe = Recipe.find_by(id: params[:id])
     recipe.update(params[:recipe])
     redirect to "/recipes/#{recipe.id}"
   end
 
-  #Destroy
+  #destroy
   delete '/recipes/:id' do
     id = params[:id]
     @recipe = Recipe.find_by(id: id)
@@ -60,27 +60,27 @@ class RecipesController < ApplicationController
     else
       @recipe.delete
       redirect to "/recipes"
+    end
   end
-end
 
-#show
-get '/recipes/:id' do
-  id = params[:id]
+  #show
+  get '/recipes/:id' do
+    id = params[:id]
     @recipe = Recipe.find_by(id: id)
-  erb :'recipes/show'
-end
+    erb :'recipes/show'
+  end
 
-##CUSTOM##
-#search by main ingredient
-get '/search' do
-  erb :'recipes/search'
-end
+  #custom
+  #search by main ingredient
+  get '/search' do
+    erb :'recipes/search'
+  end
 
-#search results
-get '/searchresult' do
-  @main = params[:main]
-  @recipes= Recipe.all
-  erb :'recipes/searchresult'
-end
+  #search results
+  get '/searchresult' do
+    @main = params[:main]
+    @recipes= Recipe.all
+    erb :'recipes/searchresult'
+  end
 
 end

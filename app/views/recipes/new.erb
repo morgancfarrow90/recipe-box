@@ -15,7 +15,7 @@
 <% Genre.all.each do |type| %>
 <input type="radio" name="recipe[genre_id]"
 value="<%=type.id%>"><%=type.genre_name%></input>
-<% end %><br>
+<% end %><br><br>
 
 <label for "main_ingrediant">Main Ingredient: </label>
 <input type= "text" name="recipe[main_ingrediant]">

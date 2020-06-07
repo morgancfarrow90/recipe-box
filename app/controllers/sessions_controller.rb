@@ -23,14 +23,8 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:password])
     session[:user_id] = user.id
     redirect '/recipes'
-    #session[:user_email] = user.user_email
-    #if user == nil
-    #if params[:user_email] == "" || params[:password] == ""
-      #erb :'sessions/error'
     else
-        erb :'sessions/loginerror'
-    #login(params[:user_email], params[:password])
-  #  redirect '/recipes'
+    erb :'sessions/loginerror'
     end
   end
 

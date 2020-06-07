@@ -18,23 +18,22 @@ nav {
   border-collapse: collapse;
   border: none;
   background-color: indigo;
+  overflow: auto;
 }
 
 nav ul {
   display: table-row;
-  margin: 12px;
 }
 
 nav li {
   display: table-cell;
-  margin: 0;
-  align: center;
 }
 
 nav a {
   font-family: Geneva;
   color: white;
   font-size: 18px;
+  text-align: center;
 }
 
 h2, h3, p {

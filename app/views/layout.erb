@@ -1,34 +1,32 @@
 <html>
-    <head>
+  <head>
     <link rel="stylesheet" href="/stylesheets/main.css" />
-    </head>
-      <body>
-        <div id= "title">
-        <h1>Recipe Box</h1>
-        </div>
-          <nav>
-          <% if logged_in? %>
+  </head>
 
+  <body>
+    <div id= "title">
+      <h1>Recipe Box</h1>
+    </div>
 
+  <nav>
+    <% if logged_in? %>
+      <ul>
+        <li><a>Welcome, <%=current_user.user_email %></a></li>
+        <li><a href="/">All Recipe</a></li>
+        <li><a href="/recipes">Your Recipes</a></li>
+        <li><a href="/recipes/new">Create Recipe</a></li>
+        <li><a href="/search">Search Recipes</a></li>
+        <li><a href="/logout">Log Out </a></li>
+    <% else %>
+        <li><a href="/">All Recipes</a></li>
+        <li><a href="/search">Search Recipes</a></li>
+        <li><a href="/login">Sign In</a></li>
+        <li><a href="/signup">Sign Up</a></li>
+    <% end %>
+      </ul>
+  </nav>
 
-          <ul>
-            <li><a>Welcome, <%=current_user.user_email %></a></li>
-            <li><a href="/">All Recipes </a></li>
-            <li><a href="/recipes">Your Recipes </a></li>
-            <li><a href="/recipes/new"> Create Recipe </a></li>
-            <li><a href="/search">Search Recipes </a></li>
-            <li><a href="/logout"> Log Out </a></li>
+    <%= yield %>
 
-
-          <% else %>
-            <li><a href="/">All Recipes </a></li>
-            <li><a href="/signup"> Sign Up</a></li>
-            <li><a href="/login"> Sign In </a></li>
-          <% end %>
-             </ul>
-          </nav>
-
-          <%= yield %>
-
-        </body>
-  </html>
+  </body>
+</html>

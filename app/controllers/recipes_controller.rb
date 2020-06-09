@@ -18,7 +18,8 @@ class RecipesController < ApplicationController
 
   #create
    post '/recipes' do
-    if !params["recipe"]["name"].empty? && !params["recipe"]["genre_id"] == nil && !params["recipe"]["main_ingrediant"].empty? && !params["recipe"]["ingredients"].empty? && !params["recipe"]["instructions"].empty?
+
+    if !params["recipe"]["name"].empty? && params["recipe"]["genre_id"] != nil && !params["recipe"]["main_ingrediant"].empty? && !params["recipe"]["ingredients"].empty? && !params["recipe"]["instructions"].empty?
 
     recipe = Recipe.create(params[:recipe])
     recipe.user= current_user
@@ -46,8 +47,12 @@ class RecipesController < ApplicationController
   #update
   put '/recipes/:id' do
     recipe = Recipe.find_by(id: params[:id])
-    recipe.update(params[:recipe])
-    redirect to "/recipes/#{recipe.id}"
+    if !logged_in? || recipe.user_id != current_user.id
+      erb :'recipes/accesserror'
+    else
+      recipe.update(params[:recipe])
+      redirect to "/recipes/#{recipe.id}"
+    end
   end
 
   #destroy
@@ -79,7 +84,8 @@ class RecipesController < ApplicationController
   #search results
   get '/searchresult' do
     @main = params[:main]
-    @recipes= Recipe.all
+
+    @recipes= Recipe.where("ingredients Like ?", "%#{params[:main]}%")
     erb :'recipes/searchresult'
   end
 
